@@ -1,6 +1,7 @@
 import { App } from 'app'
 import { theme } from 'resources/theme'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
+import 'normalize.css'
 
 export function Root () {
   return (
