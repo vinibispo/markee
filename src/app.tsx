@@ -1,11 +1,16 @@
+import { Aside } from 'aside'
+import { Content } from 'content'
 import styled from 'styled-components'
 
 export function App () {
   return (
-    <Title>App</Title>
+    <Main>
+      <Aside />
+      <Content />
+    </Main>
   )
 }
-
-const Title = styled.h1`
-color: ${props => props.theme.colors.primary};
+const Main = styled.main`
+  display: flex;
+  height: 100vh;
 `
