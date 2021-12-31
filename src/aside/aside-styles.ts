@@ -119,12 +119,13 @@ export const FileItemLink = styled.a<FileItemLinkProps>`${({ theme, active }) =>
   display: flex;
   font-size: 1.6rem;
   margin-bottom: 4px;
+  min-height: 34px;
   padding: 8px 32px;
   padding-left: 50px;
   text-decoration: none;
   ${active && css`
-    background-color: ${theme.colors.lightBlack};
-    `}
+      background-color: ${theme.colors.lightBlack};
+  `}
 `}`
 
 export const FileListItem = styled.li`${({ theme }) => css`

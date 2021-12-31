@@ -2,16 +2,15 @@ import { File } from 'resources/files/types'
 import markeeLogo from './markee-logo.png'
 import * as icon from 'ui/icons'
 import * as S from './aside-styles'
-import { useState } from 'react'
-import { v4 as uuid } from 'uuid'
+import { MouseEvent } from 'react'
 
-export function Aside () {
-  const [files, setFiles] = useState<File[]>([])
-
-  const handleNewFile = () => {
-    const newFile: File = { id: uuid(), name: 'Sem título', content: '', active: true, status: 'saved' }
-    setFiles(f => [...f.map(file => ({ ...file, active: false })), newFile])
+type AsideProps = {
+    files: File[],
+    onNewFile: () => void
+    onSelectFile: (id: string) => (e: MouseEvent<HTMLAnchorElement>) => void
+    onRemoveFile: (id: string) => (e: MouseEvent<HTMLAnchorElement>) => void
   }
+export function Aside ({ files, onNewFile, onSelectFile, onRemoveFile }: AsideProps) {
   return (
     <S.Aside>
       <header>
@@ -26,21 +25,21 @@ export function Aside () {
         <span>Arquivos</span>
       </S.H2>
 
-      <S.Button onClick={handleNewFile}>
+      <S.Button onClick={onNewFile}>
         <icon.PlusDark /> Adicionar arquivo
       </S.Button>
 
       <S.FileList>
         {files.map(file => (
           <S.FileListItem key={file.id}>
-            <S.FileItemLink href={`/file/${file.id}`} active={file.active}>
+            <S.FileItemLink href={`/file/${file.id}`} onClick={onSelectFile(file.id)} active={file.active}>
               {file.name}
             </S.FileItemLink>
 
             {file.active && <S.StatusIconStyled status={file.status} />}
 
             {!file.active && (
-              <S.RemoveButton title={`Remover o arquivo ${file.name}`}>
+              <S.RemoveButton onClick={onRemoveFile(file.id)} title={`Remover o arquivo ${file.name}`}>
                 <S.RemoveIcon />
               </S.RemoveButton>
             )}
