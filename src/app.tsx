@@ -11,11 +11,11 @@ export function App () {
     handleUpdateFileName,
     handleSelectFile,
     handleRemoveFile,
-    handleNewFile
+    handleCreateNewFile
   } = useFiles()
   return (
     <Main>
-      <Aside onRemoveFile={handleRemoveFile} files={files} onNewFile={handleNewFile} onSelectFile={handleSelectFile} />
+      <Aside onRemoveFile={handleRemoveFile} files={files} onNewFile={handleCreateNewFile} onSelectFile={handleSelectFile} />
       <Content inputRef={inputRef} onUpdateFileName={handleUpdateFileName} onUpdateFileContent={handleUpdateFileContent} file={files.find(file => file.active)} />
     </Main>
   )
