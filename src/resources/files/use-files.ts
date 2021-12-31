@@ -42,6 +42,11 @@ export function useFiles () {
     setFiles(f => f.filter(file => id !== file.id))
   }
   useEffect(() => {
+    const selectedFile = files.find(file => file.active)
+
+    if (selectedFile) history.replaceState(null, '', `/file/${selectedFile.id}`)
+  }, [files])
+  useEffect(() => {
     localforage.setItem('@Markee:files', files)
   }, [files])
 
