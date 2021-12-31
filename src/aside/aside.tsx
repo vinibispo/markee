@@ -2,25 +2,16 @@ import { File } from 'resources/files/types'
 import markeeLogo from './markee-logo.png'
 import * as icon from 'ui/icons'
 import * as S from './aside-styles'
-
-const files: File[] = [
-  {
-    id: '0',
-    name: 'README.md',
-    content: 'Conteúdo do README',
-    active: false,
-    status: 'saved'
-  },
-  {
-    id: '1',
-    name: 'CONTRIBUTING.md',
-    content: 'Conteúdo do Contributing',
-    active: true,
-    status: 'editing'
-  }
-]
+import { useState } from 'react'
+import { v4 as uuid } from 'uuid'
 
 export function Aside () {
+  const [files, setFiles] = useState<File[]>([])
+
+  const handleNewFile = () => {
+    const newFile: File = { id: uuid(), name: 'Sem título', content: '', active: true, status: 'saved' }
+    setFiles(f => [...f.map(file => ({ ...file, active: false })), newFile])
+  }
   return (
     <S.Aside>
       <header>
@@ -35,7 +26,7 @@ export function Aside () {
         <span>Arquivos</span>
       </S.H2>
 
-      <S.Button>
+      <S.Button onClick={handleNewFile}>
         <icon.PlusDark /> Adicionar arquivo
       </S.Button>
 
