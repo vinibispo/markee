@@ -77,11 +77,11 @@ export function App () {
     ))
   }
 
-  const handleSelectFile = (id: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleSelectFile = (id: string) => (e: MouseEvent) => {
     e.preventDefault()
     setFiles(f => f.map(file => ({ ...file, active: file.id === id })))
   }
-  const handleRemoveFile = (id: string) => (e: MouseEvent<HTMLAnchorElement>) => {
+  const handleRemoveFile = (id: string) => (e: MouseEvent) => {
     e.stopPropagation()
     setFiles(f => f.filter(file => id !== file.id))
   }

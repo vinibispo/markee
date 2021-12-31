@@ -7,8 +7,8 @@ import { MouseEvent } from 'react'
 type AsideProps = {
     files: File[],
     onNewFile: () => void
-    onSelectFile: (id: string) => (e: MouseEvent<HTMLAnchorElement>) => void
-    onRemoveFile: (id: string) => (e: MouseEvent<HTMLAnchorElement>) => void
+    onSelectFile: (id: string) => (e: MouseEvent) => void
+    onRemoveFile: (id: string) => (e: MouseEvent) => void
   }
 export function Aside ({ files, onNewFile, onSelectFile, onRemoveFile }: AsideProps) {
   return (

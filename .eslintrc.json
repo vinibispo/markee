@@ -26,6 +26,7 @@
     }
   },
   "rules": {
+    "jsx-a11y/no-autofocus": "off",
     "no-unused-vars": "off",
     "@typescript-eslint/no-unused-vars": [
       "error",
